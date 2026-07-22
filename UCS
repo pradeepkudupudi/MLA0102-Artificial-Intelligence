@@ -1,0 +1,24 @@
+
+    CREATE priority queue PQ
+    CREATE set Visited
+
+    INSERT (0, Start) into PQ      // (cost, node)
+
+    WHILE PQ not empty DO
+        (Cost, Node) ← REMOVE node with minimum cost from PQ
+
+        IF Node = Goal THEN
+            PRINT "Goal Reached with cost", Cost
+            EXIT
+        END IF
+
+        IF Node not in Visited THEN
+            ADD Node to Visited
+
+            FOR each Neighbor of Node DO
+                INSERT (Cost + EdgeCost, Neighbor) into PQ
+            END FOR
+        END IF
+    END WHILE
+
+END UniformCostSearch
