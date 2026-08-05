@@ -1,0 +1,29 @@
+ROWS = 6
+COLS = 7
+
+board = [
+[' ',' ',' ',' ',' ',' ',' '],
+[' ',' ',' ',' ',' ',' ',' '],
+[' ',' ',' ',' ',' ',' ',' '],
+[' ',' ','B','R',' ',' ',' '],
+[' ','B','B','R',' ',' ',' '],
+['B','B','B','B','R','R',' ']
+]
+
+def winner():
+
+    for r in range(ROWS):
+        for c in range(COLS-3):
+
+            if board[r][c]!=" ":
+                if board[r][c]==board[r][c+1]==board[r][c+2]==board[r][c+3]:
+                    return board[r][c]
+
+    return None
+
+w = winner()
+
+if w:
+    print(w,"Wins")
+else:
+    print("No Winner")

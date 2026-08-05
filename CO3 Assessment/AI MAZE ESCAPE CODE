@@ -1,0 +1,39 @@
+from collections import deque
+
+maze = [
+    ['S', '.', '.', '#', '.'],
+    ['#', '#', '.', '#', '.'],
+    ['.', '.', '.', '.', '.'],
+    ['.', '#', '#', '#', '.'],
+    ['.', '.', '.', 'G', '.']
+]
+
+rows = len(maze)
+cols = len(maze[0])
+
+for i in range(rows):
+    for j in range(cols):
+        if maze[i][j] == 'S':
+            start = (i, j)
+        if maze[i][j] == 'G':
+            goal = (i, j)
+
+queue = deque([(start, 0)])
+visited = set([start])
+
+directions = [(-1,0),(1,0),(0,-1),(0,1)]
+
+while queue:
+    (x,y),steps = queue.popleft()
+
+    if (x,y)==goal:
+        print("Shortest Steps =",steps)
+        break
+
+    for dx,dy in directions:
+        nx,ny=x+dx,y+dy
+
+        if 0<=nx<rows and 0<=ny<cols:
+            if maze[nx][ny]!='#' and (nx,ny) not in visited:
+                visited.add((nx,ny))
+                queue.append(((nx,ny),steps+1))
